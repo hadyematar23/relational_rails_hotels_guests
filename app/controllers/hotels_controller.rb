@@ -1,5 +1,9 @@
 class HotelsController < ApplicationController
   def index 
-    require 'pry'; binding.pry
+    @hotels = Hotel.all
+  end
+
+  def show 
+    @hotel = Hotel.find(params[:id])
   end
 end
