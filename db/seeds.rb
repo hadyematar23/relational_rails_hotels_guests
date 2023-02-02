@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+hotel1 = Hotel.create!(name: "Casa Flow", starlink: true, meters_from_beach: 55)
+guest1 = hotel1.guests.create!(name: "Hady", price_per_night_pesos: 650, spanish_speaker: true, hotel_id: hotel1.id)
+guest2 = hotel1.guests.create!(name: "Malena", price_per_night_pesos: 550, spanish_speaker: false)
+hotel2 = Hotel.create!(name: "Losodeli", starlink: false, meters_from_beach: 346)
+guest3 = hotel2.guests.create!(name: "Diego", price_per_night_pesos: 12, spanish_speaker: true)
+guest4 = hotel2.guests.create!(name: "Michele", price_per_night_pesos: 890, spanish_speaker: true)
+guest5 = hotel2.guests.create!(name: "Michele", price_per_night_pesos: 890, spanish_speaker: true)

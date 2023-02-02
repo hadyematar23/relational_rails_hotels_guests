@@ -1,5 +1,7 @@
 <h1>Hotels in Puerto Escondido</h1>
-
+<%binding.pry%>
 <%@hotels.each do |hotel|%>
-<h2><%=hotel.name%></h2>
+<h2>Hotel name:<%=hotel.name%></h2>
+<p>Created at time_stamp<%=hotel.created_at%>
+<p>Has starlink?<%=hotel.starlink%>
 <%end%>

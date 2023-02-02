@@ -1,0 +1,7 @@
+<h1>Guests</h1>
+
+<%@guests.each do |guest|%>
+<h2><%= guest.name %></h2>
+<p>SpanishSpeaker:<%=guest.spanish_speaker%></p>
+<p><%=guest.price_per_night_pesos%></p>
+<% end %>
