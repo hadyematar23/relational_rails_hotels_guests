@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   get '/guests', to: 'guests#index'
   get '/guests/:id', to: 'guests#show'
   get '/hotels/:hotel_id/guests', to: 'hotel_guests#index'
+  get '/individual_hotel/:hotel_id', to: 'hotel#index'
 
-  # get '/hotels/:hotel_id/guests', to: 'hotels#show_hotel_guests'
 end

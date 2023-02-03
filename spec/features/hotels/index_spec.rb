@@ -6,7 +6,7 @@ RSpec.describe 'for each hotel table' do
 
     describe "when the user visits '/hotels'" do 
       it 'displays all of the hotels at the index page' do #user story 1 
-        require 'pry'; binding.pry
+        
         hotel1 = Hotel.create!(name: "Casa Flow", starlink: true, meters_from_beach: 55)
         hotel2 = Hotel.create!(name: "Losodeli", starlink: false, meters_from_beach: 346)
 
@@ -18,20 +18,21 @@ RSpec.describe 'for each hotel table' do
       end 
  
     
-  describe "when the user visits /hotels" do 
-    it "displays the hotels by the time when their records were created in the system and includes a created_by next to each one" do #User Story 6- feature test. STILL NEED TO DO THIS METHOD TEST AND ACTUALLY CREATE THE METHOD 
+  describe "when the user visits /hotels" do #User Story 6- feature test. STILL NEED TO DO THIS METHOD TEST AND ACTUALLY CREATE THE METHOD 
+    before :each do 
+      @hotel1 = Hotel.create!(name: "Casa Flow", starlink: true, meters_from_beach: 55, created_at: Time.zone.parse("2022-01-01 12:00:00"))
+      @hotel2 = Hotel.create!(name: "Losodeli", starlink: false, meters_from_beach: 346, created_at: Time.zone.parse("2023-01-02 12:00:00"))
+      @hotel3 = Hotel.create!(name: "Toucan", starlink:false, meters_from_beach: 375, created_at: Time.zone.parse("2021-01-01 12:00:00"))
+    end
 
-    hotel1 = Hotel.create!(name: "Casa Flow", starlink: true, meters_from_beach: 55, created_at: Time.zone.parse("2022-01-01 12:00:00"))
-    hotel2 = Hotel.create!(name: "Losodeli", starlink: false, meters_from_beach: 346, created_at: Time.zone.parse("2022-01-02 12:00:00"))
-    hotel3 = Hotel.create!(name: "Toucan", starlink:false, meters_from_beach: 375, created_at: Time.zone.parse("2021-01-01 12:00:00"))
+  it "displays the hotels by the time when their records were created in the system " do 
 
     visit "/hotels"
-      save_and_open_page
-    expect(hotel2.name).to appear_before(hotel1.name)
-    expect(hotel1.name).to appear_before(hotel3.name)
-    # expect()
-
+      
+    expect(@hotel2.name).to appear_before(@hotel1.name)
+    expect(@hotel1.name).to appear_before(@hotel3.name)
   end 
+
 end 
 end 
 end 

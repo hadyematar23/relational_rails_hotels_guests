@@ -31,5 +31,17 @@ RSpec.describe Hotel, type: :model do
 
     end
 
+    it "can count the number of guests" do #user story 7 model method
+
+      hotel1 = Hotel.create!(name: "Losodeli", starlink: false, meters_from_beach: 346)
+      guest1 = hotel1.guests.create!(name: "Hady", price_per_night_pesos: 650, spanish_speaker: true)
+      guest2 = hotel1.guests.create!(name: "Malena", price_per_night_pesos: 550, spanish_speaker: false)
+      hotel2 = Hotel.create!(name: "Casa Flow", starlink: true, meters_from_beach: 55)
+      guest3 = hotel2.guests.create!(name: "Diego", price_per_night_pesos: 12, spanish_speaker: true)
+
+      expect(hotel1.count_guests).to eq(2)
+
+    end
+
   end
 end
