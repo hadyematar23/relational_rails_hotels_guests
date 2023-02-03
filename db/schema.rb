@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_30_231206) do
+ActiveRecord::Schema.define(version: 2023_02_01_032617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,16 +19,16 @@ ActiveRecord::Schema.define(version: 2023_01_30_231206) do
     t.boolean "spanish_speaker"
     t.integer "price_per_night_pesos"
     t.string "name"
-    t.bigint "hotel_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "hotel_id"
     t.index ["hotel_id"], name: "index_guests_on_hotel_id"
   end
 
   create_table "hotels", force: :cascade do |t|
     t.string "name"
-    t.boolean "starlink"
     t.integer "meters_from_beach"
+    t.boolean "starlink"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
