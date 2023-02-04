@@ -14,4 +14,15 @@ class Hotel < ApplicationRecord
   end
   # It's a class because Hotel.order_hotels -- you are calling it on a class whereas for the list_guests_by_hotel_id, it's an instance method. 
 
+  def boolean_print(params)
+    if params[:Starlink] == nil 
+      self.starlink = "false"
+    else 
+      self.starlink = "true"
+    end
+  end
+
+  def alphabetize
+    self.guests.where(hotel_id: self.id).order(:name)
+  end
 end

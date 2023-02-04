@@ -1,6 +1,11 @@
 <h1><%= @hotel.name%></h1>
 <p><%= link_to "Guests staying at #{@hotel.name}", "/hotels/#{@hotel.id}/guests"%><p>
 
+<p><%= link_to "Update Hotel", "/hotels/#{@hotel.id}/edit"%></p>
+
+<p><%=@hotel.name%> has <%=@count_of_guests%> guests.</p>
+
+
 <p style="font-size: 16px">Does it have Starlink?<%= @hotel.starlink%></p>
 <p style="font-size: 16px">meters_from_beach:<%=@hotel.meters_from_beach%></p>
 <p style="font-size: 16px">Created at:<%=@hotel.created_at%></p>

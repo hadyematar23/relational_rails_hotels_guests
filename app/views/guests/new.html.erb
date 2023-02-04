@@ -1,0 +1,12 @@
+<form action="/hotels/<%=@hotel.id%>/guests" method="post">
+
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <p>Add New Guest:</p>
+
+  Name: <input type='text' name='Name'/><br/>
+  MXP Price Per Night: <input type='number' name='MXP_per_night'/><br/>
+  Check if Spanish Speaker: <input type= 'checkbox' name='Spanish_Speaker'><br/>
+  
+  <input type='submit' value= 'Create Guest'/>
+</form>

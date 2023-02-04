@@ -1,4 +1,7 @@
-<h1><%= @guest.name%><h1>
+<h1><%= @guest.name%></h1>
+
+<p><%= link_to "Update Guest", "/guests/#{@guest.id}/edit"%></p>
+
 <p style="font-size: 16px">Price per night in Mexican Pesos?<%= @guest.price_per_night_pesos%></p>
 <p style="font-size: 16px">Spanish-speaker?:<%=@guest.spanish_speaker%></p>
 <p style="font-size: 16px">Created at:<%=@guest.created_at%></p>

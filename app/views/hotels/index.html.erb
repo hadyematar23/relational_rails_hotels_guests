@@ -1,8 +1,11 @@
 <h1>Hotels in Puerto Escondido</h1>
-
+<p><%= link_to "Add New Hotel", "/hotels/new"%>
 <%@hotels.each do |hotel|%>
 
-<h2>Hotel name: <%=hotel.name%></h2>
-<p>Created at time_stamp: <%=hotel.created_at%>
-<p>Has starlink?<%=hotel.starlink%>
+<h2>Hotel name: <%=hotel.name%></h2> 
+<p><%= link_to "Edit #{hotel.name}'s Information", "/hotels/#{hotel.id}/edit"%></p>
+
+<p>Created at time_stamp:&nbsp; <%=hotel.created_at%>
+<p>Has starlink?&nbsp;<%=hotel.starlink%>
+<p>Meters from beach: &nbsp;<%=hotel.meters_from_beach%>
 <%end%>
