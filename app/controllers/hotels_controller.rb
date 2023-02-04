@@ -5,10 +5,40 @@ class HotelsController < ApplicationController
 
   def show 
     @hotel = Hotel.find(params[:id])
+    @count_of_guests = @hotel.count_guests
   end
 
-  def show_hotel_guests
-    hotel = Hotel.find(params[:hotel_id])
-    @hotel_guests = hotel.list_guests_by_hotel_id
+  def new 
+    
+  end
+
+  def create 
+    hotel = Hotel.new({
+      name: params[:Name], 
+      meters_from_beach: params[:"Meters from Beach"],
+      starlink: nil
+    })
+    hotel.boolean_print(params)
+    hotel.save
+
+    redirect_to '/hotels'
+  end
+
+  def edit 
+    @hotel = Hotel.find(params[:hotel_id])
+  end
+
+  def update 
+
+    hotel = Hotel.find(params[:id])
+    hotel.update({
+      name: params[:hotel][:name], 
+      meters_from_beach: params[:hotel][:meters], 
+      starlink: nil
+    })
+    hotel.boolean_print(params)
+    hotel.save
+
+    redirect_to "/hotels/#{hotel.id}"
   end
 end

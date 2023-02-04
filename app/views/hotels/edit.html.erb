@@ -1,0 +1,22 @@
+<form action= "/hotels/<%=@hotel.id%>" method="post">
+ 
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <input type="hidden" name="_method" value ="PATCH" />
+  <p>Update Hotel's Information:</p> 
+<%# Here is it is really running the PATCH method after we submit the form, and not the POST action. It's just that we have to have it visibly as POST and hidden as PATCH. %>
+<%# Here, when we click the Update Hotel button, we are making the HTTP request to PATCH hotels/:id, which does the hotels# update action%>
+  Update Hotel Name: <input type='text' name='hotel[name]' value="<%@hotel.name%>"/>
+  
+  <br/>
+
+  Update Hotel Meters from Beach: <input type='number' name='hotel[meters]' value="<%@hotel.meters_from_beach%>"/>
+
+  <br/>
+
+  Update Hotel Starlink Status: Check if there is Starlink<input type= 'checkbox' name='Starlink' value="<%@hotel.starlink%>"/> 
+  
+  <br/>
+  
+  <input type='submit' value= 'Update Hotel'/>
+</form>

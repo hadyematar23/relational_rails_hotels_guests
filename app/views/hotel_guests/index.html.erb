@@ -1,8 +1,23 @@
+
+<h1>List of Guests at <%=@hotel.name%> </h1>
+
+<p><%= link_to "Add Guest", "/hotels/#{@hotel.id}/guests/new"%> 
+
+<p><%= link_to "Sort Guests Alphabetically", "/hotels/#{@hotel.id}/guests?alpha=true"%> 
+
 <%@hotel_guests.each do |guest|%>
+
 <h2><%=guest.name%></h2>
+
+<p><%= link_to "Edit #{guest.name}'s Information", "/guests/#{guest.id}/edit"%></p>
+
 <p>Spanish-speaker?<%=guest.spanish_speaker%></p>
+
 <p><%=guest.price_per_night_pesos%></p>
+
 <p><%=guest.created_at%></p>
+
 <p><%=guest.updated_at%></p>
+
 <%end%>
 

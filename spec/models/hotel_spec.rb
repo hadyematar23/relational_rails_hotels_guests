@@ -43,5 +43,28 @@ RSpec.describe Hotel, type: :model do
 
     end
 
+    it "will return a false on the boolean if there is no value on the key 'Starlink'" do 
+
+      hotel1 = Hotel.create!(name: "Losodeli", starlink: nil, meters_from_beach: 346)
+
+      params = {
+      :hotel=>{"name"=>"Diego's House", "meters"=>"355"},
+      :Starlink=>"", 
+      :controller=>"hotels", 
+      :action=>"update", 
+      :id =>"779"}
+
+      expect(hotel1.boolean_print(params)).to eq("true")
+
+      params = {
+      :hotel=>{"name"=>"Diego's House", "meters"=>"355"},
+      :controller=>"hotels", 
+      :action=>"update", 
+      :id =>"779"}
+
+      expect(hotel1.boolean_print(params)).to eq("false")
+
+    end
+
   end
 end
