@@ -10,25 +10,52 @@ RSpec.describe "application page of the HTML.erb file" do
         guest1 = hotel1.guests.create!(name: "Hady", price_per_night_pesos: 650, spanish_speaker: true)
 
         visit "/hotels"
-        expect(page).to have_link('Hotels Index', href: "/hotels")
+        expect(page).to have_link('All Hotels', href: "/hotels")
 
         visit "/hotels/#{hotel1.id}"
-        expect(page).to have_link('Hotels Index', href: "/hotels")
+        expect(page).to have_link('All Hotels', href: "/hotels")
 
         visit '/guests'
-        expect(page).to have_link('Hotels Index', href: "/hotels")
+        expect(page).to have_link('All Hotels', href: "/hotels")
 
         visit "guests/#{guest1.id}"
-        expect(page).to have_link('Hotels Index', href: "/hotels")
+        expect(page).to have_link('All Hotels', href: "/hotels")
 
         visit "/hotels/#{hotel1.id}/guests"
-        expect(page).to have_link('Hotels Index', href: "/hotels")
+        expect(page).to have_link('All Hotels', href: "/hotels")
 
         visit "/hotels/new"
-        expect(page).to have_link('Hotels Index', href: "/hotels")
+        expect(page).to have_link('All Hotels', href: "/hotels")
 
         visit "/hotels/#{hotel1.id}/edit"
-        expect(page).to have_link('Hotels Index', href: "/hotels")
+        expect(page).to have_link('All Hotels', href: "/hotels")
+      end
+
+      it "see a link at the top of the page that takes me to the Guests Index" do 
+
+        hotel1 = Hotel.create!(name: "Casa Flow", starlink: true, meters_from_beach: 55)
+        guest1 = hotel1.guests.create!(name: "Hady", price_per_night_pesos: 650, spanish_speaker: true)
+
+        visit "/hotels"
+        expect(page).to have_link('All Guests', href: "/guests")
+
+        visit "/hotels/#{hotel1.id}"
+        expect(page).to have_link('All Guests', href: "/guests")
+
+        visit '/guests'
+        expect(page).to have_link('All Guests', href: "/guests")
+
+        visit "guests/#{guest1.id}"
+        expect(page).to have_link('All Guests', href: "/guests")
+
+        visit "/hotels/#{hotel1.id}/guests"
+        expect(page).to have_link('All Guests', href: "/guests")
+
+        visit "/hotels/new"
+        expect(page).to have_link('All Guests', href: "/guests")
+
+        visit "/hotels/#{hotel1.id}/edit"
+        expect(page).to have_link('All Guests', href: "/guests")
       end
     end 
   end 

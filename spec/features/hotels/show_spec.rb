@@ -132,16 +132,45 @@ require 'rails_helper'
           expect(page).to_not have_content("false")
           
         end
-
-
-
-
-
-
-
-
-
       end # when fills out the form with updated info and click the submit button"
 
+      describe "deleting the hotel" do 
+      before(:each)do 
+        @hotel1 = Hotel.create!(name: "Casa Flow", starlink: true, meters_from_beach: 55)
+        @guest1 = @hotel1.guests.create!(name: "Hady", price_per_night_pesos: 650, spanish_speaker: true)
+        @guest2 = @hotel1.guests.create!(name: "Malena", price_per_night_pesos: 550, spanish_speaker: false)
+        @hotel2 = Hotel.create!(name: "Losodeli", starlink: false, meters_from_beach: 346)
+        @guest3 = @hotel2.guests.create!(name: "Diego", price_per_night_pesos: 12, spanish_speaker: true)
+        @guest4 = @hotel2.guests.create!(name: "Michele", price_per_night_pesos: 500, spanish_speaker: true)
+        @guest5 = @hotel2.guests.create!(name: "Radim", price_per_night_pesos: 400, spanish_speaker: false)
+        @guest6 = @hotel2.guests.create!(name: "Kain", price_per_night_pesos: 300, spanish_speaker: true)
+        @guest7 = @hotel1.guests.create!(name: "Farhad", price_per_night_pesos: 100, spanish_speaker: false)
+        @guest8 = @hotel1.guests.create!(name: "Radim", price_per_night_pesos: 200, spanish_speaker: true)
+      end
 
+      it "on the individual hotel show page it shows a link to delete the hotel" do 
+
+        visit "/hotels/#{@hotel1.id}"
+        
+        expect(page).to have_link("Delete Hotel", href: "/hotels/#{@hotel1.id}")
+
+      end
+
+      it "once you click the link of 'Delete Hotel', the parent and its children are deleted and you are returned to the parent index page" do 
+
+        visit "/hotels"
+
+
+        visit "/hotels/#{@hotel1.id}"
+
+        click_link "Delete Hotel"
+
+        expect(page).to have_current_path("/hotels")
+        expect(page).to_not have_content(@hotel1.name)
+        expect(page).to have_content(@hotel2.name)
+      end
+
+
+
+    end #deleting the hotel 
 end #as a user

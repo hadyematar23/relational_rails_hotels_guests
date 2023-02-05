@@ -10,9 +10,11 @@ Rails.application.routes.draw do
   get '/hotels/:hotel_id/guests', to: 'hotel_guests#index'
   
   post '/hotels', to: 'hotels#create' # post - creates a new record
+
   get '/hotels/:hotel_id/edit', to: 'hotels#edit'
   patch '/hotels/:id', to: 'hotels#update'
   get '/hotels/:hotel_id/guests/new', to: 'guests#new'
+
   post '/hotels/:hotel_id/guests', to: 'guests#create'
 
   get '/guests/:guest_id/edit', to: 'guests#edit'
@@ -20,5 +22,9 @@ Rails.application.routes.draw do
   patch '/guests/:id', to: 'guests#update'
 
   get "/hotels/:hotel_id/guests/", to: 'hotel_guests#index'
+
+  delete "/hotels/:id", to: "hotels#destroy"
+
+  delete "/guests/:id", to: "guests#destroy"
 
 end

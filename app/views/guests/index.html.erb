@@ -5,6 +5,7 @@
 <h2><%= guest.name %></h2>
 
 <p><%= link_to "Edit #{guest.name}'s Information", "/guests/#{guest.id}/edit"%></p>
+<p><%= link_to "Delete #{guest.name}", "/guests/#{guest.id}", method: :delete %> </p>
 
 <p>SpanishSpeaker:&nbsp;<%=guest.spanish_speaker%></p>
 

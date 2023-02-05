@@ -96,7 +96,6 @@ RSpec.describe 'as a visitor' do
   it "displays a link to sort the guests in alphabetical order" do 
   
     visit "/hotels/#{@hotel1.id}/guests"
-    save_and_open_page
 
     expect(page).to have_link("Sort Guests Alphabetically", href: "/hotels/#{@hotel1.id}/guests?alpha=true")
 
@@ -151,6 +150,54 @@ RSpec.describe 'as a visitor' do
       expect(page).to have_content("Update Guest Spanish Status")
 
     end
-  end 
+
+    describe "Displaying records over a give threnshold" do 
+      it "there is a form that allows the visitor to input a numeric value and has a submit button that reads 'Only return records with more than 'CHOOSE NUMBER' Pesos per night'" do 
+
+        visit "/hotels/#{@hotel1.id}/guests"
+
+        expect(page).to have_selector("form")
+        expect(page).to have_content("Peso Threshold")
+        expect(page).to have_button("Only return records with more than your chosen peso threshold per night")
+        
+      end
+
+      it "after inputting a numeric value and clicking the submit button, the user is brought back to the hotel_guests index page only showing the records that meet that threshold" do 
+
+        visit "/hotels/#{@hotel1.id}/guests"
+
+        fill_in "pesos", with: "300"
+
+        click_button("Only return records with more than your chosen peso threshold per night")
+        
+        expect(page).to have_current_path("/hotels/#{@hotel1.id}/guests?pesos=300")
+
+        expect(page).to have_content("Hady")
+        expect(page).to_not have_content("Farhad")
+        expect(page).to_not have_content("Radim")
+
+      end
+    end
+
+      describe "deleting from the hotel-guest index directly" do 
+        it "next to every guest name in any hotel-guest index, there exists a link to delet the guest" do 
+          visit "/hotels/#{@hotel1.id}/guests"
+          save_and_open_page
+          expect(page).to have_link("Delete #{@guest1.name}", href: "/guests/#{@guest1.id}")
+          expect(page).to have_link("Delete #{@guest1.name}", href: "/guests/#{@guest1.id}")
+
+        end
+
+        it "once you click on the link, the hotel is deleted and you are returned to the hotels index page" do 
+
+          visit "/hotels/#{@hotel1.id}/guests"
+          expect(page).to have_content(@guest1.name)
+          click_link "Delete #{@guest1.name}" 
+          expect(page).to_not have_content(@guest1.name)
+          expect(page).to have_content(@guest8.name)
+        end
+      end
+
+  end #"a customized link to update each child is located next to each child's name when on the index page"
   end #when person visits hotels/id/guests
 end #big Rspec closer- as a visitor

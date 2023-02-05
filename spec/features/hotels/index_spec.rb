@@ -66,7 +66,7 @@ RSpec.describe 'for each hotel table' do
           fill_in "Meters from Beach", with: "255"
 
           click_button("Create Hotel")
-          save_and_open_page
+    
           expect(current_path).to eq('/hotels')
           expect(page).to have_content("Puerto Dreams")
           expect(page).to have_content("Has starlink? true")
@@ -115,7 +115,6 @@ RSpec.describe 'for each hotel table' do
       it "when click on the link, there is an edit page to update the info" do #/parents/:id/edit' 
 
         visit "/hotels"
-        # save_and_open_page
         click_link "Edit #{@hotel1.name}'s Information" 
 
         expect(page).to have_selector("form")
@@ -124,7 +123,27 @@ RSpec.describe 'for each hotel table' do
         expect(page).to have_content("Update Hotel Meters from Beach")
 
       end 
+      
+      it "next to every parent there is a link to delete the parent" do 
 
-    end # "when the visitor visits the hotel index page"
+        visit "/hotels"
+        expect(page).to have_link("Delete #{@hotel1.name}", href: "/hotels/#{@hotel1.id}")
+        expect(page).to have_link("Delete #{@hotel2.name}", href: "/hotels/#{@hotel2.id}")
+
+      end
+
+      it "once you click on the link, the hotel is deleted and you are returned to the hotels index page" do 
+
+        visit "/hotels"
+        click_link "Delete #{@hotel1.name}" 
+
+        expect(page).to have_content(@hotel2.name)
+        expect(page).to_not have_content(@hotel1.name)
+
+      end
+    end
+
+
+
   end #AS A VISITOR
 end #GENERAL RSPEC
