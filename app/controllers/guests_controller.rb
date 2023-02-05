@@ -1,7 +1,13 @@
 class GuestsController < ApplicationController
   def index 
-    @guests = Guest.select_spanish_speakers
-  end
+    require 'pry'; binding.pry
+    if params[:searchtext] != nil 
+      @guests = Guest.search(params)
+    else 
+      @guests = Guest.select_spanish_speakers
+    end
+    # require 'pry'; binding.pry
+  end 
 
   def show 
     @guest = Guest.find(params[:id])

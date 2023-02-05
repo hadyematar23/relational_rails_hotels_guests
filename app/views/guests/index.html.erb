@@ -1,5 +1,5 @@
 <h1>Guests</h1>
-
+<%binding.pry%>
 <%@guests.each do |guest|%>
 
 <h2><%= guest.name %></h2>
@@ -12,3 +12,8 @@
 <p><%=guest.price_per_night_pesos%></p>
 
 <% end %>
+
+<form action= "/guests" method="gets">
+  Search for Guest: <input type='text' name='searchtext'/><br/>
+  <input type="submit" value= "Search">
+</form>

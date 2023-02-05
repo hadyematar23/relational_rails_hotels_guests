@@ -1,8 +1,10 @@
 <h1>Hotels in Puerto Escondido</h1>
 <p><%= link_to "Add New Hotel", "/hotels/new"%>
+
 <%@hotels.each do |hotel|%>
 
 <h2>Hotel name: <%=hotel.name%></h2> 
+<p> <%=hotel.name%>: <%= hotel.count_guests %> Guests</p>
 <p><%= link_to "Edit #{hotel.name}'s Information", "/hotels/#{hotel.id}/edit"%></p>
 <p><%=link_to "Delete #{hotel.name}", "/hotels/#{hotel.id}", method: :delete %> </p>
 
@@ -11,3 +13,10 @@
 <p>Has starlink?&nbsp;<%=hotel.starlink%>
 <p>Meters from beach: &nbsp;<%=hotel.meters_from_beach%>
 <%end%>
+
+<p><%= link_to "Sort by number of guests", "/hotels/?sort=true"%></p>
+
+<form action= "/hotels" method="gets">
+  Search for Hotel: <input type='text' name='searchtext'/><br/>
+  <input type="submit" value= "Search">
+</form>

@@ -5,6 +5,14 @@ class Guest <ApplicationRecord
     Guest.where(spanish_speaker: true)
   end
 
+  def self.search(params)
+
+    @guests = []
+    @guests << find_by(name: params[:searchtext])
+    return @guests
+
+  end
+
   def boolean_print(params)
     if params[:Spanish] == nil 
       self.spanish_speaker = "false"

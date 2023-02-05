@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
+  
   get '/hotels', to: 'hotels#index'
   get '/hotels/new', to: 'hotels#new' #takes us to the HTML page where we have the form, and once you fill out the form, it sends the POST request <form action="/hotels" method="post">. It sends to POST 
   get '/hotels/:id', to: 'hotels#show'

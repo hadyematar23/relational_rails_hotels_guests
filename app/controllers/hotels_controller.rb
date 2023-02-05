@@ -1,6 +1,13 @@
 class HotelsController < ApplicationController
   def index 
-    @hotels = Hotel.order_hotels
+    if params[:sort] == "true"
+      @hotels = Hotel.sort_by_number  
+    elsif params[:searchtext] != nil 
+      @hotels = Hotel.search(params)
+    else
+      @hotels = Hotel.order_hotels
+    end
+  
   end
 
   def show 
@@ -9,7 +16,6 @@ class HotelsController < ApplicationController
   end
 
   def new 
-    
   end
 
   def create 

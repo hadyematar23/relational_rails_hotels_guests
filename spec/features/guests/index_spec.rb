@@ -94,6 +94,47 @@ RSpec.describe 'as a user of the page' do
 
     end 
 
+    describe "doing an exact search" do 
+      it "when you got to the index page there is a text box that will filter results by keyword" do 
+       
+        visit "/guests"
+
+        expect(page).to have_selector("form")
+        expect(page).to have_content("Search for Guest")
+        expect(page).to have_button("Search")
+
+    end
+
+    it "when you have an exact match of one of the records, it will return a page with only the record that you searched for" do 
+
+      visit "/guests"
+      save_and_open_page
+      fill_in "searchtext", with: "Diego"
+      click_button "Search"
+
+      expect(page).to have_current_path("/guests?searchtext=Diego")
+
+      expect(page).to have_content("Diego")
+      expect(page).to_not have_content("Hady")
+
+
+    end
+
+    it "when you have a partial match of one of the records, it will return a page with only the record that you searched for" do 
+
+      visit "/guests"
+      fill_in "searchtext", with: "Die"
+      click_button "Search"
+
+      expect(page).to have_current_path("/guests?searchtext=Die")
+
+      expect(page).to have_content("Diego")
+      expect(page).to_not have_content("Hady")
+
+
+    end
+  end 
+
     end 
   end #"when a user of the page visits '/guests'"
 end # 'as a user of the page'
