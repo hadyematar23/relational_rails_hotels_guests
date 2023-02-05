@@ -27,6 +27,4 @@ Rails.application.routes.draw do
 
   delete "/guests/:id", to: "guests#destroy"
 
-  # gets "guests/:hotel_id", to: "hotel_guests#index"
-
 end

@@ -177,9 +177,26 @@ RSpec.describe 'as a visitor' do
         expect(page).to_not have_content("Radim")
 
       end
-
-
     end
+
+      describe "deleting from the hotel-guest index directly" do 
+        it "next to every guest name in any hotel-guest index, there exists a link to delet the guest" do 
+          visit "/hotels/#{@hotel1.id}/guests"
+          save_and_open_page
+          expect(page).to have_link("Delete #{@guest1.name}", href: "/guests/#{@guest1.id}")
+          expect(page).to have_link("Delete #{@guest1.name}", href: "/guests/#{@guest1.id}")
+
+        end
+
+        it "once you click on the link, the hotel is deleted and you are returned to the hotels index page" do 
+
+          visit "/hotels/#{@hotel1.id}/guests"
+          expect(page).to have_content(@guest1.name)
+          click_link "Delete #{@guest1.name}" 
+          expect(page).to_not have_content(@guest1.name)
+          expect(page).to have_content(@guest8.name)
+        end
+      end
 
   end #"a customized link to update each child is located next to each child's name when on the index page"
   end #when person visits hotels/id/guests

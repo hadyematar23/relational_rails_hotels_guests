@@ -123,17 +123,24 @@ RSpec.describe 'for each hotel table' do
         expect(page).to have_content("Update Hotel Meters from Beach")
 
       end 
-    end 
-
-    describe "deleting parent from parent index page" do 
+      
       it "next to every parent there is a link to delete the parent" do 
 
-
-
-
+        visit "/hotels"
+        expect(page).to have_link("Delete #{@hotel1.name}", href: "/hotels/#{@hotel1.id}")
+        expect(page).to have_link("Delete #{@hotel2.name}", href: "/hotels/#{@hotel2.id}")
 
       end
 
+      it "once you click on the link, the hotel is deleted and you are returned to the hotels index page" do 
+
+        visit "/hotels"
+        click_link "Delete #{@hotel1.name}" 
+
+        expect(page).to have_content(@hotel2.name)
+        expect(page).to_not have_content(@hotel1.name)
+
+      end
     end
 
 

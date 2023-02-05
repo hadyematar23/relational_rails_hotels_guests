@@ -4,6 +4,8 @@
 
 <h2>Hotel name: <%=hotel.name%></h2> 
 <p><%= link_to "Edit #{hotel.name}'s Information", "/hotels/#{hotel.id}/edit"%></p>
+<p><%=link_to "Delete #{hotel.name}", "/hotels/#{hotel.id}", method: :delete %> </p>
+
 
 <p>Created at time_stamp:&nbsp; <%=hotel.created_at%>
 <p>Has starlink?&nbsp;<%=hotel.starlink%>
