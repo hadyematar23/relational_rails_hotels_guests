@@ -159,21 +159,16 @@ require 'rails_helper'
       it "once you click the link of 'Delete Hotel', the parent and its children are deleted and you are returned to the parent index page" do 
 
         visit "/hotels"
-        save_and_open_page
+
 
         visit "/hotels/#{@hotel1.id}"
 
         click_link "Delete Hotel"
-        save_and_open_page
+
         expect(page).to have_current_path("/hotels")
         expect(page).to_not have_content(@hotel1.name)
         expect(page).to have_content(@hotel2.name)
       end
-
-
-
-
-
 
 
 

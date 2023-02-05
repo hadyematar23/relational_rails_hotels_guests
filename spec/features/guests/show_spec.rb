@@ -114,7 +114,6 @@ RSpec.describe 'as a user' do
       visit "/guests/#{@guest1.id}"
 
       click_link "Delete Guest"
-save_and_open_page
       expect(page).to have_current_path("/guests")
       expect(page).to_not have_content(@guest1.name)
       expect(page).to have_content(@guest8.name)

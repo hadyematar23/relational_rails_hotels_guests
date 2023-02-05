@@ -96,7 +96,6 @@ RSpec.describe 'as a visitor' do
   it "displays a link to sort the guests in alphabetical order" do 
   
     visit "/hotels/#{@hotel1.id}/guests"
-    save_and_open_page
 
     expect(page).to have_link("Sort Guests Alphabetically", href: "/hotels/#{@hotel1.id}/guests?alpha=true")
 
@@ -156,9 +155,9 @@ RSpec.describe 'as a visitor' do
       it "there is a form that allows the visitor to input a numeric value and has a submit button that reads 'Only return records with more than 'CHOOSE NUMBER' Pesos per night'" do 
 
         visit "/hotels/#{@hotel1.id}/guests"
-save_and_open_page
+
         expect(page).to have_selector("form")
-        expect(page).to have_content("pesos")
+        expect(page).to have_content("Peso Threshold")
         expect(page).to have_button("Only return records with more than your chosen peso threshold per night")
         
       end
