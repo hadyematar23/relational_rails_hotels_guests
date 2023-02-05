@@ -6,3 +6,5 @@
 <p style="font-size: 16px">Spanish-speaker?:<%=@guest.spanish_speaker%></p>
 <p style="font-size: 16px">Created at:<%=@guest.created_at%></p>
 <p style="font-size: 16px">Updated at:<%=@guest.updated_at%></p>
+
+<p><%= link_to "Delete Guest", "/guests/#{@guest.id}", method: :delete %></p>

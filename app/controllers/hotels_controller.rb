@@ -41,4 +41,11 @@ class HotelsController < ApplicationController
 
     redirect_to "/hotels/#{hotel.id}"
   end
+
+  def destroy 
+    @hotel = Hotel.find(params[:id])
+    @hotel.destroy
+
+    redirect_to '/hotels'
+  end
 end

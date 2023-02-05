@@ -5,6 +5,8 @@ class HotelGuestsController < ApplicationController
 
     if params[:alpha] == "true" 
       @hotel_guests = @hotel.alphabetize
+    elsif params[:pesos] != nil 
+      @hotel_guests = @hotel.meet_threshold(params[:pesos])
     else #no alphabetize
       @hotel_guests = @hotel.list_guests_by_hotel_id
     end 

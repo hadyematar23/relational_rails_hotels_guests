@@ -1,5 +1,5 @@
 class Hotel < ApplicationRecord
-  has_many :guests
+  has_many :guests, dependent: :destroy
   
   def list_guests_by_hotel_id
     self.guests.where(hotel_id: self.id)
@@ -24,5 +24,9 @@ class Hotel < ApplicationRecord
 
   def alphabetize
     self.guests.where(hotel_id: self.id).order(:name)
+  end
+
+  def meet_threshold(pesos)
+    self.guests.where("price_per_night_pesos > #{pesos}")
   end
 end

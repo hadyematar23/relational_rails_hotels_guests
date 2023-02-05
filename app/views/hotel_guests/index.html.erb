@@ -1,4 +1,3 @@
-
 <h1>List of Guests at <%=@hotel.name%> </h1>
 
 <p><%= link_to "Add Guest", "/hotels/#{@hotel.id}/guests/new"%> 
@@ -20,4 +19,16 @@
 <p><%=guest.updated_at%></p>
 
 <%end%>
+
+<form action= "/hotels/<%=@hotel.id%>/guests" method="gets">
+  Peso Threshold: <input type='number' name='pesos'/><br/>
+  <input type="submit" value= "Only return records with more than your chosen peso threshold per night">
+</form>
+
+
+<p><%= link_to "Sort Guests Alphabetically", "/hotels/#{@hotel.id}/guests?alpha=true"  %>
+
+
+
+
 

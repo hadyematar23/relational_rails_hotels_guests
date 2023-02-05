@@ -5,8 +5,13 @@
 
 <p><%=@hotel.name%> has <%=@count_of_guests%> guests.</p>
 
-
 <p style="font-size: 16px">Does it have Starlink?<%= @hotel.starlink%></p>
 <p style="font-size: 16px">meters_from_beach:<%=@hotel.meters_from_beach%></p>
 <p style="font-size: 16px">Created at:<%=@hotel.created_at%></p>
 <p style="font-size: 16px">Updated at:<%=@hotel.updated_at%></p>
+
+
+<p><%= link_to "Delete Hotel", "/hotels/#{@hotel.id}", method: :delete %></p>
+
+
+
