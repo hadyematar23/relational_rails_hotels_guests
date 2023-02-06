@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/guests', to: 'guests#index'
   get '/guests/:id', to: 'guests#show'
   get '/hotels/:hotel_id/guests', to: 'hotel_guests#index'
-  post '/hotels', to: 'hotels#create' # post - creates a new record
+  post '/hotels', to: 'hotels#create' 
   get '/hotels/:hotel_id/edit', to: 'hotels#edit'
   patch '/hotels/:id', to: 'hotels#update'
   get '/hotels/:hotel_id/guests/new', to: 'guests#new'

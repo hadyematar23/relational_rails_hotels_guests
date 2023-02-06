@@ -98,9 +98,6 @@ RSpec.describe Hotel, type: :model do
       @guest10 = @hotel4.guests.create!(name: "Guest10", price_per_night_pesos: 800, spanish_speaker: true)
       @guest11 = @hotel4.guests.create!(name: "Guest11", price_per_night_pesos: 600, spanish_speaker: false)
 
-
-      require 'pry'; binding.pry
-
       expect(Hotel.sort_by_number).to eq([@hotel2, @hotel1, @hotel4, @hotel3])
 
     end
