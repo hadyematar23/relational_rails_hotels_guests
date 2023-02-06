@@ -36,9 +36,13 @@ class Hotel < ApplicationRecord
 
   def self.search(params)
     @hotels = []
-    @hotels << find_by(name: params[:searchtext])
-    require 'pry'; binding.pry
-    return @hotels
+    if find_by(name: params[:searchtext]) != nil
+      @hotels << find_by(name: params[:searchtext])
+    else 
+      @hotels << where("name LIKE ?", "%#{params[:searchtext]}%")
+    end 
+    # require 'pry'; binding.pry
+    return @hotels.flatten
   end
 
 

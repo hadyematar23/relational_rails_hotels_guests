@@ -4,6 +4,7 @@
 <%@hotels.each do |hotel|%>
 
 <h2>Hotel name: <%=hotel.name%></h2> 
+
 <p> <%=hotel.name%>: <%= hotel.count_guests %> Guests</p>
 <p><%= link_to "Edit #{hotel.name}'s Information", "/hotels/#{hotel.id}/edit"%></p>
 <p><%=link_to "Delete #{hotel.name}", "/hotels/#{hotel.id}", method: :delete %> </p>

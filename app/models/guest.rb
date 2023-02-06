@@ -6,9 +6,13 @@ class Guest <ApplicationRecord
   end
 
   def self.search(params)
-
+    # require 'pry'; binding.pry
     @guests = []
-    @guests << find_by(name: params[:searchtext])
+    if find_by(name: params[:searchtext]) != nil
+      @guests << find_by(name: params[:searchtext])
+    else 
+      @guests = where("name LIKE ?", "%#{params[:searchtext]}%")
+    end
     return @guests
 
   end

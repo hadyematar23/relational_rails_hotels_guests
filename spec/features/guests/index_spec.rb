@@ -131,7 +131,6 @@ RSpec.describe 'as a user of the page' do
       expect(page).to have_content("Diego")
       expect(page).to_not have_content("Hady")
 
-
     end
   end 
 

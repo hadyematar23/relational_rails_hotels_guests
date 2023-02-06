@@ -220,6 +220,21 @@ RSpec.describe 'for each hotel table' do
         expect(page).to_not have_content("Toucan")
 
       end
+
+      it "when you have a partial match of one of the records, it will return a page with only the record that you searched for" do 
+
+        visit "/hotels"
+        fill_in "searchtext", with: "asa"
+        click_button "Search"
+        save_and_open_page
+  
+        expect(page).to have_current_path("/hotels?searchtext=asa")
+  
+        expect(page).to have_content("Casa Flow")
+        expect(page).to_not have_content("Toucan")
+        expect(page).to_not have_content("Losodeli")
+  
+      end
     end
   end #AS A VISITOR
 end #GENERAL RSPEC
