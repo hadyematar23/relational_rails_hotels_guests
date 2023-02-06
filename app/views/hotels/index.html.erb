@@ -3,7 +3,7 @@
 
 <%@hotels.each do |hotel|%>
 
-<h2>Hotel name: <%=hotel.name%></h2> 
+<h2>Hotel name:<%= link_to "#{hotel.name}", "/hotels/#{hotel.id}"%></h2>
 
 <p> <%=hotel.name%>: <%= hotel.count_guests %> Guests</p>
 <p><%= link_to "Edit #{hotel.name}'s Information", "/hotels/#{hotel.id}/edit"%></p>

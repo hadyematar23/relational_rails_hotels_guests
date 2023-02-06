@@ -132,7 +132,20 @@ RSpec.describe 'as a user of the page' do
       expect(page).to_not have_content("Hady")
 
     end
-  end 
+
+    it "when a user clicks is on the index and clicks on the name of the guest, they will be taken to their show page" do 
+
+      visit "/guests"
+      save_and_open_page
+      click_link "#{@guest1.name}"
+
+      expect(page).to have_current_path("/guests/#{@guest1.id}")
+      expect(page).to have_content("Hady")
+      expect(page).to_not have_content("Diego")
+    end
+
+
+    end 
 
     end 
   end #"when a user of the page visits '/guests'"

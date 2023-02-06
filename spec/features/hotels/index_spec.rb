@@ -235,6 +235,17 @@ RSpec.describe 'for each hotel table' do
         expect(page).to_not have_content("Losodeli")
   
       end
+
+      it "when a user clicks is on the index and clicks on the name of the guest, they will be taken to their show page" do 
+
+      visit "/hotels"
+      save_and_open_page
+      click_link "#{@hotel1.name}"
+
+      expect(page).to have_current_path("/hotels/#{@hotel1.id}")
+      expect(page).to have_content("Casa Flow")
+      expect(page).to_not have_content("Losodeli")
     end
+  end 
   end #AS A VISITOR
 end #GENERAL RSPEC
