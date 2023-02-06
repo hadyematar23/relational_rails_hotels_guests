@@ -80,5 +80,55 @@ RSpec.describe Hotel, type: :model do
 
     end
 
+    it "will sort the Hotels by the number of guests each of them has" do 
+
+      @hotel1 = Hotel.create!(name: "Casa Flow", starlink: true, meters_from_beach: 55)
+      @hotel3 = Hotel.create!(name: "Toucan", starlink: false, meters_from_beach: 450) #may have to delete this hotel
+      @guest1 = @hotel1.guests.create!(name: "Hady", price_per_night_pesos: 650, spanish_speaker: true)
+      @guest2 = @hotel1.guests.create!(name: "Malena", price_per_night_pesos: 550, spanish_speaker: false)
+      @hotel2 = Hotel.create!(name: "Losodeli", starlink: false, meters_from_beach: 346)
+      @guest3 = @hotel2.guests.create!(name: "Diego", price_per_night_pesos: 12, spanish_speaker: true)
+      @guest4 = @hotel2.guests.create!(name: "Michele", price_per_night_pesos: 500, spanish_speaker: true)
+      @guest5 = @hotel2.guests.create!(name: "Radim", price_per_night_pesos: 400, spanish_speaker: false)
+      @guest6 = @hotel2.guests.create!(name: "Cayne", price_per_night_pesos: 300, spanish_speaker: true)
+      @guest7 = @hotel2.guests.create!(name: "Farhad", price_per_night_pesos: 100, spanish_speaker: false)
+      @guest8 = @hotel2.guests.create!(name: "Radim", price_per_night_pesos: 200, spanish_speaker: true)
+      @guest9 = @hotel1.guests.create!(name: "Caroline", price_per_night_pesos: 800, spanish_speaker: false)
+      @hotel4 = Hotel.create!(name: "TreeHouse", starlink: true, meters_from_beach: 1000)
+      @guest10 = @hotel4.guests.create!(name: "Guest10", price_per_night_pesos: 800, spanish_speaker: true)
+      @guest11 = @hotel4.guests.create!(name: "Guest11", price_per_night_pesos: 600, spanish_speaker: false)
+
+
+      require 'pry'; binding.pry
+
+      expect(Hotel.sort_by_number).to eq([@hotel2, @hotel1, @hotel4, @hotel3])
+
+    end
+
+    it "will return the element in an array if there is an exact match for it" do 
+      @hotel1 = Hotel.create!(name: "Casa Flow", starlink: true, meters_from_beach: 55)
+      @hotel3 = Hotel.create!(name: "Toucan", starlink: false, meters_from_beach: 450) #may have to delete this hotel
+      @guest1 = @hotel1.guests.create!(name: "Hady", price_per_night_pesos: 650, spanish_speaker: true)
+      @guest2 = @hotel1.guests.create!(name: "Malena", price_per_night_pesos: 550, spanish_speaker: false)
+      @hotel2 = Hotel.create!(name: "Losodeli", starlink: false, meters_from_beach: 346)
+
+      params = {searchtext: "Casa Flow"}
+      expect(Hotel.search(params)).to eq([@hotel1])
+    end
+
+    it "will return the objects if there's a partial match between the search input and the name of the object" do 
+
+      @hotel1 = Hotel.create!(name: "Casa Flow", starlink: true, meters_from_beach: 55)
+      @hotel3 = Hotel.create!(name: "Toucan", starlink: false, meters_from_beach: 450) #may have to delete this hotel
+      @guest1 = @hotel1.guests.create!(name: "Hady", price_per_night_pesos: 650, spanish_speaker: true)
+      @guest2 = @hotel1.guests.create!(name: "Malena", price_per_night_pesos: 550, spanish_speaker: false)
+      @hotel2 = Hotel.create!(name: "Losodeli", starlink: false, meters_from_beach: 346)
+
+      params = {searchtext: "asa"}
+
+      expect(Hotel.search(params)).to eq([@hotel1])
+
+    end
+
   end
 end

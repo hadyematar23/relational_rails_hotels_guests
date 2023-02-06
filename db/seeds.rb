@@ -7,12 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 hotel1 = Hotel.create!(name: "Casa Flow", starlink: true, meters_from_beach: 55)
-guest1 = hotel1.guests.create!(name: "Hady", price_per_night_pesos: 650, spanish_speaker: true, hotel_id: hotel1.id)
+guest1 = hotel1.guests.create!(name: "Hady", price_per_night_pesos: 650, spanish_speaker: true)
 guest2 = hotel1.guests.create!(name: "Malena", price_per_night_pesos: 550, spanish_speaker: false)
 hotel2 = Hotel.create!(name: "Losodeli", starlink: false, meters_from_beach: 346)
 guest3 = hotel2.guests.create!(name: "Diego", price_per_night_pesos: 12, spanish_speaker: true)
 guest4 = hotel2.guests.create!(name: "Michele", price_per_night_pesos: 500, spanish_speaker: true)
 guest5 = hotel2.guests.create!(name: "Radim", price_per_night_pesos: 400, spanish_speaker: false)
-guest6 = hotel2.guests.create!(name: "Kain", price_per_night_pesos: 300, spanish_speaker: true)
+guest6 = hotel2.guests.create!(name: "Cayne", price_per_night_pesos: 300, spanish_speaker: true)
 guest7 = hotel1.guests.create!(name: "Farhad", price_per_night_pesos: 100, spanish_speaker: false)
 guest8 = hotel1.guests.create!(name: "Radim", price_per_night_pesos: 200, spanish_speaker: true)
+guest9 = hotel1.guests.create!(name: "Caroline", price_per_night_pesos: 800, spanish_speaker: false)
+@hotel3 = Hotel.create!(name: "Toucan", starlink: false, meters_from_beach: 450) #may have to delete this hotel
