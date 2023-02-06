@@ -56,6 +56,8 @@ RSpec.describe 'for each hotel table' do
         end  
       end 
 
+      
+
       describe "the visitor fills out the form, clicks the button 'Create Hotel' to submit the form" do #this is after the user has filled up the HTML page, submitted it, and then the HTML page sends HTTP request to POST  /hotels which takes us to hotels#create action, which, after making us new hotel using information from the form, then sends us back to new hotels index  
         it "the visitor is redirected to the hotels index form which now has the information they previoulsy input about the hotel listed" do 
           
@@ -66,7 +68,6 @@ RSpec.describe 'for each hotel table' do
           fill_in "Meters from Beach", with: "255"
 
           click_button("Create Hotel")
-    
           expect(current_path).to eq('/hotels')
           expect(page).to have_content("Puerto Dreams")
           expect(page).to have_content("Has starlink? true")

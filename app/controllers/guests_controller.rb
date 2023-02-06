@@ -1,7 +1,6 @@
 class GuestsController < ApplicationController
   def index 
     if params[:searchtext] != nil 
-      # require 'pry'; binding.pry
       @guests = Guest.search(params)
     else 
       @guests = Guest.select_spanish_speakers
