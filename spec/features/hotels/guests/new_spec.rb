@@ -35,9 +35,9 @@ RSpec.describe 'as a visitor' do
       visit "/hotels/#{@hotel1.id}/guests/new"
       expect(Guest.all.count).to eq(8)
 
-      fill_in "Name", with: "Sebastian"
-      check "Spanish_Speaker"
-      fill_in "MXP_per_night", with: "1500"
+      fill_in "name", with: "Sebastian"
+      check "spanish_speaker"
+      fill_in "price_per_night_pesos", with: "1500"
 
       click_button("Create Guest")
 

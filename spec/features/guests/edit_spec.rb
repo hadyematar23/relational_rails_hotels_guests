@@ -40,15 +40,16 @@ RSpec.describe 'as a user of the guests index page' do
   it "after filling in the form of update guest link and clicking the 'Update Guest' button, the guest's data is updated and the user is redirected to the child's showpage and displays the updated info" do 
 
     visit "/guests/#{@guest2.id}/edit"
-
-    fill_in "guest[name]", with: "Abraham"
-    fill_in "guest[price]", with: 420
-    check "Spanish"
+# save_and_open_page
+    fill_in 'name', with: "Abraham"
+    fill_in 'price_per_night_pesos', with: "420"
+    check "spanish_speaker"
 
     click_button("Update Guest")
     
     expect(page).to have_current_path("/guests/#{@guest2.id}")
     expect(page).to have_content("Abraham")
+    expect(page).to have_content(420)
     expect(page).to_not have_content(780)
 
   end

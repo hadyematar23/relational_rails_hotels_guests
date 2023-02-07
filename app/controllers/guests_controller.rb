@@ -1,4 +1,5 @@
 class GuestsController < ApplicationController
+  
   def index 
     if params[:searchtext] != nil 
       @guests = Guest.search(params)
@@ -17,15 +18,7 @@ class GuestsController < ApplicationController
 
   def create 
     @hotel = Hotel.find(params[:hotel_id])
-
-    guest = Guest.new({
-      name: params[:Name], 
-      spanish_speaker: nil,
-      price_per_night_pesos: params[:MXP_per_night],
-      hotel_id: @hotel.id
-    })
-    guest.boolean_print(params)
-    
+    guest = Guest.new(guest_params)
     guest.save
 
     redirect_to "/hotels/#{@hotel.id}/guests"
@@ -37,15 +30,8 @@ class GuestsController < ApplicationController
 
   def update 
     guest = Guest.find(params[:id])
-
-    guest.update({
-      name: params[:guest][:name], 
-      spanish_speaker: nil,
-      price_per_night_pesos: params[:guest][:price],
-      hotel_id: guest.hotel_id
-    })
-    guest.boolean_print(params)
-    guest.save
+    guest.update(guest_params)
+    require 'pry'; binding.pry
 
     redirect_to "/guests/#{guest.id}"
   end
@@ -56,4 +42,10 @@ class GuestsController < ApplicationController
 
     redirect_to '/guests'
   end
+
+  private
+    def guest_params
+      params.permit(:price_per_night_pesos, :name, :spanish_speaker, :hotel_id)
+    end
+
 end
