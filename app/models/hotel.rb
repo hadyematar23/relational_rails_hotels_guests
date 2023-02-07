@@ -41,7 +41,6 @@ class Hotel < ApplicationRecord
     else 
       @hotels << where("name LIKE ?", "%#{params[:searchtext]}%")
     end 
-    # require 'pry'; binding.pry
     return @hotels.flatten
   end
 

@@ -19,9 +19,9 @@ class Guest <ApplicationRecord
 
   def boolean_print(params)
     if params[:Spanish] == nil 
-      self.spanish_speaker = "false"
+      spanish_speaker = "false"
     else 
-      self.spanish_speaker = "true"
+      spanish_speaker = "true"
     end
   end
 end

@@ -4,9 +4,13 @@
 
   <p>Add New Guest:</p>
 
-  Name: <input type='text' name='Name'/><br/>
-  MXP Price Per Night: <input type='number' name='MXP_per_night'/><br/>
-  Check if Spanish Speaker: <input type= 'checkbox' name='Spanish_Speaker'><br/>
+  Name: <input type='text' name='name'/><br/>
+
+  MXP Price Per Night: <input type='number' name='price_per_night_pesos'/><br/>
+
+  Check if Spanish Speaker: 
+  <input type="hidden" name='spanish_speaker' value="false">
+  <input type= 'checkbox' name='spanish_speaker' value ="true"><br/>
   
   <input type='submit' value= 'Create Guest'/>
 </form>
