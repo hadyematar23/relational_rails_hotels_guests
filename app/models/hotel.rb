@@ -14,13 +14,7 @@ class Hotel < ApplicationRecord
     self.guests.count
   end
 
-  def boolean_print(params)
-    if params[:Starlink] == nil 
-      self.starlink = "false"
-    else 
-      self.starlink = "true"
-    end
-  end
+
 
   def alphabetize
     self.guests.where(hotel_id: self.id).order(:name)

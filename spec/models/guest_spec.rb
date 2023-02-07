@@ -5,20 +5,6 @@ RSpec.describe Guest, type: :model do
     it {should belong_to :hotel}
   end
 
-  it "will return a false on the boolean if there is no value on the key 'Spanish_speaker" do 
-
-    hotel1 = Hotel.create!(name: "Losodeli", starlink: nil, meters_from_beach: 346)
-    guest1 = hotel1.guests.create!(name: "Hady", price_per_night_pesos: 650, spanish_speaker: true)
-
-    params = {:Spanish=>"on"}
-
-    expect(guest1.boolean_print(params)).to eq("true")
-
-    params = {}
-
-    expect(guest1.boolean_print(params)).to eq("false")
-  end
-
   it "will select all of the Spanish Speakers" do 
     hotel1 = Hotel.create!(name: "Losodeli", starlink: false, meters_from_beach: 346)
     guest1 = hotel1.guests.create!(name: "Hady", price_per_night_pesos: 650, spanish_speaker: true)
