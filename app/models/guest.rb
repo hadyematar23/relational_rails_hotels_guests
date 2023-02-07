@@ -6,7 +6,6 @@ class Guest <ApplicationRecord
   end
 
   def self.search(params)
-    # require 'pry'; binding.pry
     @guests = []
     if find_by(name: params[:searchtext]) != nil
       @guests << find_by(name: params[:searchtext])
@@ -14,14 +13,6 @@ class Guest <ApplicationRecord
       @guests = where("name LIKE ?", "%#{params[:searchtext]}%")
     end
     return @guests
+  end 
 
-  end
-
-  def boolean_print(params)
-    if params[:Spanish] == nil 
-      spanish_speaker = "false"
-    else 
-      spanish_speaker = "true"
-    end
-  end
 end
