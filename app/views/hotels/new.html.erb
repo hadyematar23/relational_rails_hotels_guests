@@ -4,11 +4,13 @@
 
   <p>List a new Hotel:</p>
 
-  Name: <input type='text' name='Name'/><br/>
+  Name: <input type='text' name='name'/><br/>
 
-  Meters from Beach: <input type='number' name='Meters from Beach'/><br/>
+  Meters from Beach: <input type='number' name='meters_from_beach'/><br/>
   
-  Check if has starlink: <input type= 'checkbox' name='Starlink'><br/>
+  Check if has starlink: 
+  <input type="hidden" name='starlink' value="false">
+  <input type= 'checkbox' name='starlink' value ="true"><br/>
   
   <input type='submit' value= 'Create Hotel'/>
 </form>

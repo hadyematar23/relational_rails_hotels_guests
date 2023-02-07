@@ -31,7 +31,6 @@ class GuestsController < ApplicationController
   def update 
     guest = Guest.find(params[:id])
     guest.update(guest_params)
-    require 'pry'; binding.pry
 
     redirect_to "/guests/#{guest.id}"
   end

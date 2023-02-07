@@ -41,8 +41,8 @@ require 'rails_helper'
 
       visit "/hotels/#{@hotel1.id}/edit"
 
-      fill_in "hotel[name]", with: "Diego's House"
-      fill_in "hotel[meters]", with: 355
+      fill_in "name", with: "Diego's House"
+      fill_in "meters_from_beach", with: 355
 
       click_button("Update Hotel")
       
@@ -57,9 +57,9 @@ require 'rails_helper'
 
       visit "/hotels/#{@hotel1.id}/edit"
 
-      fill_in "hotel[name]", with: "Diego's House"
-      check "Starlink"
-      fill_in "hotel[meters]", with: 355
+      fill_in "name", with: "Diego's House"
+      check "starlink"
+      fill_in "meters_from_beach", with: 355
 
       click_button("Update Hotel")
       

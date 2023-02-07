@@ -1,4 +1,5 @@
 class HotelsController < ApplicationController
+
   def index 
     if params[:sort] == "true"
       @hotels = Hotel.sort_by_number  
@@ -7,7 +8,6 @@ class HotelsController < ApplicationController
     else
       @hotels = Hotel.order_hotels
     end
-  
   end
 
   def show 
@@ -16,15 +16,11 @@ class HotelsController < ApplicationController
   end
 
   def new 
+
   end
 
   def create 
-    hotel = Hotel.new({
-      name: params[:Name], 
-      meters_from_beach: params[:"Meters from Beach"],
-      starlink: nil
-    })
-    hotel.boolean_print(params)
+    hotel = Hotel.new(hotel_params)
     hotel.save
 
     redirect_to '/hotels'
@@ -37,14 +33,8 @@ class HotelsController < ApplicationController
   def update 
 
     hotel = Hotel.find(params[:id])
-    hotel.update({
-      name: params[:hotel][:name], 
-      meters_from_beach: params[:hotel][:meters], 
-      starlink: nil
-    })
-    hotel.boolean_print(params)
-    hotel.save
-
+    hotel.update(hotel_params)
+      
     redirect_to "/hotels/#{hotel.id}"
   end
 
@@ -53,5 +43,10 @@ class HotelsController < ApplicationController
     @hotel.destroy
 
     redirect_to '/hotels'
+  end
+
+  private 
+  def hotel_params
+    params.permit(:name, :meters_from_beach, :starlink)
   end
 end

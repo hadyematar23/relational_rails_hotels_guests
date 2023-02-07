@@ -21,9 +21,9 @@ RSpec.describe 'for each hotel table' do
           
         visit "/hotels/new"
 
-        fill_in "Name", with: "Puerto Dreams"
-        check "Starlink"
-        fill_in "Meters from Beach", with: "255"
+        fill_in "name", with: "Puerto Dreams"
+        check "starlink"
+        fill_in "meters_from_beach", with: "255"
 
         click_button("Create Hotel")
         expect(current_path).to eq('/hotels')
@@ -37,8 +37,8 @@ RSpec.describe 'for each hotel table' do
 
         visit "/hotels/new"
 
-        fill_in "Name", with: "Puerto Dreams"
-        fill_in "Meters from Beach", with: "255"
+        fill_in "name", with: "Puerto Dreams"
+        fill_in "meters_from_beach", with: "255"
 
         click_button("Create Hotel")
 
@@ -53,9 +53,9 @@ RSpec.describe 'for each hotel table' do
         expect(Hotel.all.count).to eq(3)
         visit "/hotels/new"
 
-        fill_in "Name", with: "Puerto Dreams"
-        check "Starlink"
-        fill_in "Meters from Beach", with: "255"
+        fill_in "name", with: "Puerto Dreams"
+        check "starlink"
+        fill_in "meters_from_beach", with: "255"
 
         click_button("Create Hotel")
 
