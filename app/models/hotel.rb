@@ -14,8 +14,6 @@ class Hotel < ApplicationRecord
     self.guests.count
   end
 
-
-
   def alphabetize
     self.guests.where(hotel_id: self.id).order(:name)
   end

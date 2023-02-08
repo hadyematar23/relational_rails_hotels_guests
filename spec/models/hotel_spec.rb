@@ -104,5 +104,17 @@ RSpec.describe Hotel, type: :model do
 
     end
 
+    it "will alphabetize the guests by of an individual hotel alphabetically" do 
+
+      @hotel1 = Hotel.create!(name: "Casa Flow", starlink: true, meters_from_beach: 55)
+      @guest1 = @hotel1.guests.create!(name: "Hady", price_per_night_pesos: 650, spanish_speaker: true)
+      @guest2 = @hotel1.guests.create!(name: "Malena", price_per_night_pesos: 550, spanish_speaker: false)
+      @guest3 = @hotel1.guests.create!(name: "Jordan", price_per_night_pesos: 80, spanish_speaker: false)
+      @guest4 = @hotel1.guests.create!(name: "Abdul", price_per_night_pesos: 80, spanish_speaker: false)
+
+      expect(@hotel1.alphabetize).to eq([@guest4, @guest1, @guest3, @guest2])
+
+    end
+
   end
 end
